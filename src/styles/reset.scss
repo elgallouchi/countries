@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $CairoRegular;
+}
+body {
+  background-color: $gray;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+  // border: 1px solid;
+}

@@ -1,0 +1,17 @@
+header {
+  background-color: #fff;
+  box-shadow: 0 0 10px 10px #eeeeee;
+  .container {
+    display: flex;
+    align-items: center;
+    img {
+      width: 3rem;
+      margin-right: 1rem;
+    }
+    h2 {
+      font-family: $CairoRegular;
+      color: $red;
+      font-size: 2rem;
+    }
+  }
+}

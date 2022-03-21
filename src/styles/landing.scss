@@ -1,0 +1,45 @@
+.country {
+  margin-top: 2rem;
+  .name {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    .flag {
+      background-color: $white;
+      padding: $padbox;
+      border-radius: $borderradius;
+      display: flex;
+      align-items: center;
+      box-shadow: $boxshadow;
+
+      img {
+        width: 10rem;
+        height: 5rem;
+        border-radius: $borderradius;
+        margin-right: $padbox;
+      }
+      h3 {
+      }
+    }
+    .info {
+      background-color: $white;
+      padding: $padbox;
+      border-radius: $borderradius;
+
+      p {
+        label {
+        }
+        span {
+        }
+      }
+    }
+  }
+  .geography {
+    p {
+      label {
+      }
+      span {
+      }
+    }
+  }
+}

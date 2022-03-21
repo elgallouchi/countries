@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "cairo light";
+  src: url(./../assets/fonts/Cairo-Light.ttf);
+}
+@font-face {
+  font-family: "cairo extraLight";
+  src: url(./../assets/fonts/Cairo-ExtraLight.ttf);
+}
+@font-face {
+  font-family: "cairo regular";
+  src: url(./../assets/fonts/Cairo-Regular.ttf);
+}
+
+// fonts
+$CairoLight: "cairo light";
+$CairoExtraLight: "cairo extraLight";
+$CairoRegular: "cairo regular";
+
+// colors
+$red: #fa314a;
+$white: #fff;
+$gray: #efefef;
+
+// padding
+$padbox: 1.5rem;
+
+
+// border radius
+$borderradius: .3rem;
+
+// box shadow
+$boxshadow: 0 0 10px #aaa5;
