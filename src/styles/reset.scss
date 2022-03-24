@@ -6,10 +6,12 @@
 }
 body {
   background-color: $gray;
+  color: $red;
+  font-size: $fontsize;
 }
 
 .container {
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
   // border: 1px solid;
 }
