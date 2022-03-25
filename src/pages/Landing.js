@@ -13,27 +13,25 @@ import { BiMapPin, BiSitemap } from "react-icons/bi";
 import { Ri24HoursLine } from "react-icons/ri";
 import { AiOutlineCar } from "react-icons/ai";
 import { BsCalendar2Week } from "react-icons/bs";
-import isoCountryCode from "../assets/js/isoCountryCode";
+import { isoCountryCode } from "../assets/js/isoCountryCode";
 
 export default function Landing() {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState({});
-
+  const [countryBorders, setCountryBorders] = useState([]);
   // get data on mount component
   useEffect(async () => {
     const response = await axios.get("https://restcountries.com/v3.1/all");
     if (response.status === 200) {
       const country = await countryRandom(response.data);
       await setCountryData(country);
-      // console.log(await country);
 
-      console.log(isoCountryCode);
-      // borders
+      // borders countries
       if (country.borders) {
-        console.log(country.borders);
-        country.borders.filter((code) => {
-          return;
-        });
+        const pays = isoCountryCode.filter((code) =>
+          country.borders.includes(code.code)
+        );
+        setCountryBorders(pays);
       }
     } else {
       alert("error get data");
@@ -80,10 +78,12 @@ export default function Landing() {
                       <IoLanguage /> Languages
                     </label>
                     <span className="languages">
-                      {countryData?.languages &&
-                        Object.values(countryData?.languages).map(
-                          (el, index) => <span key={index}>{el}, </span>
-                        )}
+                      <select name="languages">
+                        {countryData?.languages &&
+                          Object.values(countryData?.languages).map(
+                            (el, index) => <option key={index}>{el}</option>
+                          )}
+                      </select>
                     </span>
                   </p>
                   <p>
@@ -135,14 +135,16 @@ export default function Landing() {
                 <p>
                   <label>
                     <BiSitemap />
-                    Frontiers
+                    Frontiers avec
                   </label>
-                  <span>
-                    {/* {countryData?.borders && borders(countryData.borders)} */}
-                    {countryData?.borders &&
-                      Object.values(countryData?.borders).map((el, index) => (
-                        <span key={index}>{el}, </span>
-                      ))}
+                  <span className="borders">
+                    {/* <select> */}
+                      {countryBorders.length && (
+                        countryBorders.map((el, index) => (
+                          <span key={index}>{el.name}</span>
+                        ))
+                      )}
+                    {/* </select> */}
                   </span>
                 </p>
               </div>
@@ -164,13 +166,13 @@ export default function Landing() {
                         Object.values(countryData?.currencies)[0].name}
                   </span>
                 </p>
-                <p>
+                {/* <p>
                   <label>
                     <Ri24HoursLine />
                     Fuseau horaire
                   </label>
                   <span>{countryData?.timezones}</span>
-                </p>
+                </p> */}
                 <p>
                   <label>
                     <AiOutlineCar />
