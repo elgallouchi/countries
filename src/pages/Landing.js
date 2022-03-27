@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import axios from "axios";
 import { IoLanguage } from "react-icons/io5";
@@ -14,22 +15,47 @@ import { Ri24HoursLine } from "react-icons/ri";
 import { AiOutlineCar } from "react-icons/ai";
 import { BsCalendar2Week } from "react-icons/bs";
 import { isoCountryCode } from "../assets/js/isoCountryCode";
+import ResumeCountry from "../components/ResumeCountry";
 
 export default function Landing() {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [countryBorders, setCountryBorders] = useState([]);
+
+  // variables
+  const continents = [
+    { fr: "Océanie", en: "Oceania" },
+    { fr: "Asie", en: "Asia" },
+    { fr: "Afrique", en: "Africa" },
+    { fr: "Europe", en: "Europe" },
+    { fr: "Amérique du Nord", en: "North America" },
+    { fr: "Amérique du Sud", en: "South America" },
+    { fr: "Antarctique", en: "Antarctica" },
+  ];
+
+  const days = [
+    { fr: "lundi", en: "monday" },
+    { fr: "mardi", en: "tuesday" },
+    { fr: "mercredi", en: "wednesday" },
+    { fr: "jeudi", en: "thursday" },
+    { fr: "vendredi", en: "friday" },
+    { fr: "samedi", en: "saturday" },
+    { fr: "dimanche", en: "sunday" },
+  ];
   // get data on mount component
   useEffect(async () => {
     const response = await axios.get("https://restcountries.com/v3.1/all");
     if (response.status === 200) {
       const country = await countryRandom(response.data);
       await setCountryData(country);
+      // console.log(country);
+      // console.log(country.continents);
+      // console.log(country.continents[0]);
 
       // borders countries
       if (country.borders) {
-        const pays = isoCountryCode.filter((code) =>
-          country.borders.includes(code.code)
+        const pays = isoCountryCode.filter((element) =>
+          country.borders.includes(element.code)
         );
         setCountryBorders(pays);
       }
@@ -42,19 +68,6 @@ export default function Landing() {
   const countryRandom = async (arr) => {
     return await arr[Math.floor(Math.random() * arr.length)];
   };
-
-  // get borders
-  // const borders = async (dataBorders) => {
-  //   if (dataBorders.length > 0) {
-
-  //     const frontiers = await dataBorders.map(async (countryCode) => {
-  //       const response = await axios.get(
-  //         "https://restcountries.com/v3.1/alpha/" + countryCode
-  //       );
-  //       console.log(response.data);
-  //     });
-  //   }
-  // };
 
   return (
     <>
@@ -71,8 +84,23 @@ export default function Landing() {
                     <label>Nom du pays </label>
                     <span>{countryData?.translations?.fra?.common}</span>
                   </h3>
+                  </div>
+                  <div className="flag">
+                  <p>
+                    {countryData?.translations?.fra?.common && (
+                      <ResumeCountry
+                        nameCountry={countryData?.translations?.fra?.common}
+                      />
+                    )}
+                  </p>
                 </div>
                 <div className="info">
+                  <p>
+                    <label>
+                      <FaMapMarkerAlt /> Capitale
+                    </label>
+                    <span>{countryData?.capital}</span>
+                  </p>
                   <p>
                     <label>
                       <IoLanguage /> Languages
@@ -88,12 +116,6 @@ export default function Landing() {
                   </p>
                   <p>
                     <label>
-                      <FaMapMarkerAlt /> Capitale
-                    </label>
-                    <span>{countryData?.capital}</span>
-                  </p>
-                  <p>
-                    <label>
                       <MdGroups /> Population
                     </label>
                     <span>{countryData?.population?.toLocaleString()}</span>
@@ -106,7 +128,13 @@ export default function Landing() {
                     <FaMapMarkedAlt />
                     Continent
                   </label>
-                  <span>{countryData?.continents}</span>
+                  {countryData?.continents &&
+                    continents.map(
+                      (continent, index) =>
+                        continent.en === countryData.continents[0] && (
+                          <span key={index}>{continent.fr}</span>
+                        )
+                    )}
                 </p>
                 <p>
                   <label>
@@ -132,18 +160,19 @@ export default function Landing() {
                   </label>
                   <span>{countryData?.latlng}</span>
                 </p>
-                <p>
+                <p className="borders">
                   <label>
                     <BiSitemap />
                     Frontiers avec
                   </label>
                   <span className="borders">
                     {/* <select> */}
-                      {countryBorders.length && (
-                        countryBorders.map((el, index) => (
-                          <span key={index}>{el.name}</span>
-                        ))
-                      )}
+                    {countryBorders &&
+                      countryBorders.map((el, index) => (
+                        <span key={index}>
+                          <Link to="/">{el.name}</Link>
+                        </span>
+                      ))}
                     {/* </select> */}
                   </span>
                 </p>
@@ -166,13 +195,6 @@ export default function Landing() {
                         Object.values(countryData?.currencies)[0].name}
                   </span>
                 </p>
-                {/* <p>
-                  <label>
-                    <Ri24HoursLine />
-                    Fuseau horaire
-                  </label>
-                  <span>{countryData?.timezones}</span>
-                </p> */}
                 <p>
                   <label>
                     <AiOutlineCar />
@@ -191,7 +213,14 @@ export default function Landing() {
                     <BsCalendar2Week />
                     Début de semaine
                   </label>
-                  <span>{countryData?.startOfWeek}</span>
+                  <span>
+                    {days.map(
+                      (day, index) =>
+                        day.en === countryData.startOfWeek && (
+                          <span key={index}>{day.fr}</span>
+                        )
+                    )}
+                  </span>
                 </p>
                 <p>
                   <label>
