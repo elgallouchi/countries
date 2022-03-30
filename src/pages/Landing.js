@@ -79,7 +79,7 @@ export default function Landing() {
             <div className="top">
               <div className="name">
                 <div className="flag">
-                  <img src={countryData?.flags?.png} alt={"drapeau "} />
+                  <img src={countryData?.flags?.png} alt={"drapeau "} loading="lazy" />
                   <h3>
                     <label>Nom du pays </label>
                     <span>{countryData?.translations?.fra?.common}</span>

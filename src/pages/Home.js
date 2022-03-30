@@ -1,5 +1,7 @@
 import React from "react";
 import { Header } from "../components/Header";
+import SearchForm from "../components/SearchForm";
+import { FaGithub, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -16,7 +18,7 @@ export default function Home() {
               les information de n'import quel pays dans le monde avec une
               simple recherche
             </h1>
-            <div className="form">
+            {/* <div className="form">
               <input
                 type="search"
                 placeholder="Search your country ..."
@@ -24,9 +26,11 @@ export default function Home() {
                 autoFocus
               />
               <button type="button">GO</button>
-            </div>
+            </div> */}
+            <button>Afficher tous les pays</button>
           </div>
-          <div className="right"></div>
+
+          <SearchForm />
         </div>
       </section>
       <section className="population">
@@ -62,13 +66,28 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="options">
+
+      <footer>
         <div className="container">
-          <div className="box">a</div>
-          <div className="box">b</div>
-          <div className="box">c</div>
+          <div className="social-media">
+            <a href="#" target="_blank" className="github">
+              <FaGithub />
+            </a>
+            <a href="#" target="_blank" className="linkedin">
+              <FaLinkedin />
+            </a>
+            <a href="#" target="_blank" className="twitter">
+              <FaTwitterSquare />
+            </a>
+          </div>
+          <p>
+            Ce projet a était realisé avac la version 3.1 de{" "}
+            <a href="https://restcountries.com/" target="_blank">
+              restcountries
+            </a>
+          </p>
         </div>
-      </section>
+      </footer>
     </>
   );
 }
