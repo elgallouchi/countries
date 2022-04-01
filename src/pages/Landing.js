@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import axios from "axios";
 import { IoLanguage } from "react-icons/io5";
 import { MdGroups, MdAreaChart, MdOutlineAttachMoney } from "react-icons/md";
@@ -21,6 +22,7 @@ export default function Landing() {
   const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [countryBorders, setCountryBorders] = useState([]);
+  const { name } = useParams();
 
   // variables
   const continents = [
@@ -42,9 +44,13 @@ export default function Landing() {
     { fr: "samedi", en: "saturday" },
     { fr: "dimanche", en: "sunday" },
   ];
+
   // get data on mount component
   useEffect(async () => {
-    const response = await axios.get("https://restcountries.com/v3.1/all");
+    console.log(name);
+    const response = await axios.get(
+      "https://restcountries.com/v3.1/name/" + name
+    );
     if (response.status === 200) {
       const country = await countryRandom(response.data);
       await setCountryData(country);
@@ -79,20 +85,15 @@ export default function Landing() {
             <div className="top">
               <div className="name">
                 <div className="flag">
-                  <img src={countryData?.flags?.png} alt={"drapeau "} loading="lazy" />
+                  <img
+                    src={countryData?.flags?.png}
+                    alt={"drapeau "}
+                    loading="lazy"
+                  />
                   <h3>
                     <label>Nom du pays </label>
                     <span>{countryData?.translations?.fra?.common}</span>
                   </h3>
-                  </div>
-                  <div className="flag">
-                  <p>
-                    {countryData?.translations?.fra?.common && (
-                      <ResumeCountry
-                        nameCountry={countryData?.translations?.fra?.common}
-                      />
-                    )}
-                  </p>
                 </div>
                 <div className="info">
                   <p>

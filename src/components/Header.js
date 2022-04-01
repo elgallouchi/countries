@@ -1,7 +1,7 @@
 import React from "react";
 import { BiWorld } from "react-icons/bi";
 import { Link } from "react-router-dom";
-export const Header = () => {
+export default function Header() {
   return (
     <header>
       <div className="container">
@@ -9,7 +9,12 @@ export const Header = () => {
           <BiWorld />
           <h2>Wolrd Countries</h2>
         </Link>
+        <div className="menu">
+          <Link to="/">accueil</Link>
+          <Link to="/home">home</Link>
+          <Link to="/countries">countries</Link>
+        </div>
       </div>
     </header>
   );
-};
+}

@@ -1,7 +1,8 @@
 import React from "react";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import SearchForm from "../components/SearchForm";
 import { FaGithub, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
               />
               <button type="button">GO</button>
             </div> */}
-            <button>Afficher tous les pays</button>
+            <Link to="/countries">Afficher tous les pays</Link>
           </div>
 
           <SearchForm />
