@@ -9,19 +9,20 @@ import Skeleton from "../components/Skeleton";
 
 export default function Landing() {
   const [countryData, setCountryData] = useState({});
-  const { name } = useParams();
+  const { countryName } = useParams();
 
   // change favicon dynamically
   useEffect(async () => {
     const favicon = document.getElementById("favicon");
     favicon.href = countryData?.flags?.png;
     console.log(Object.keys(countryData).length);
-  }, [countryData, name]);
+  }, [countryData, countryName]);
 
   // get data on mount component
   useEffect(async () => {
+    console.log(countryName);
     const response = await axios.get(
-      "https://restcountries.com/v3.1/name/" + name + "?fullText=true"
+      "https://restcountries.com/v3.1/name/" + countryName + "?fullText=true"
     );
     if (response.status === 200) {
       console.log(response);
@@ -29,7 +30,7 @@ export default function Landing() {
     } else {
       alert("error get data");
     }
-  }, [name]);
+  }, [countryName]);
 
   return (
     <>
@@ -182,9 +183,11 @@ export default function Landing() {
                     <tr>
                       <td>land borders</td>
                       <td>
-                        {countryData?.borders?.map((border) => (
+                        {countryData?.borders?.map((border, index) => (
                           <>
-                            <Link to={"/" + border}>{border} </Link>
+                            <Link key={index} to={"/" + border}>
+                              {border}{" "}
+                            </Link>
                             {", "}
                           </>
                         ))}

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { IoArrowRedoCircleOutline } from "react-icons/io5";
-import Loader from "../components/Loader";
-import Skeleton from "../components/Skeleton";
 import TableSkeleton from "../components/TableSkeleton";
 
 export default function AllCountries() {
@@ -35,7 +33,7 @@ export default function AllCountries() {
         <td>{country?.capital}</td>
         <td>{country?.continents}</td>
         <td>
-          <Link to={"/" + country?.name?.common?.toLowerCase()}>
+          <Link to={"/countries/" + country?.name?.common?.toLowerCase()}>
             <IoArrowRedoCircleOutline />
           </Link>
         </td>
