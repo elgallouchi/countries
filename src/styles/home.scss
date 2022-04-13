@@ -1,5 +1,5 @@
 .hero {
-  min-height: 80vh;
+  min-height: 91vh;
   background-image: url("../assets/img/endless-constellation-1.svg");
   background-color: #141c4c;
   display: flex;
@@ -42,8 +42,13 @@
         cursor: pointer;
         padding: 0 2rem;
         border: 3px solid #ff9800;
-        box-shadow: 0 0 10px 0px #ff9800;
+        // box-shadow: 0 0 10px 0px #ff9800;
         background: none;
+        transition: all .2s ease-in-out;
+        &:hover {
+          border: 3px solid #ffc978;
+          box-shadow: 0 0 15px 0px #ffc978;
+        }
       }
       span {
       }

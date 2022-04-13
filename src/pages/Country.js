@@ -1,257 +1,271 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import axios from "axios";
 import { IoLanguage } from "react-icons/io5";
-import { MdGroups, MdAreaChart, MdOutlineAttachMoney } from "react-icons/md";
-import {
-  FaMapMarkerAlt,
-  FaHands,
-  FaMapMarkedAlt,
-  FaMapSigns,
-} from "react-icons/fa";
-import { BiMapPin, BiSitemap } from "react-icons/bi";
-import { Ri24HoursLine } from "react-icons/ri";
-import { AiOutlineCar } from "react-icons/ai";
-import { BsCalendar2Week } from "react-icons/bs";
-import { isoCountryCode } from "../assets/js/isoCountryCode";
-import ResumeCountry from "../components/ResumeCountry";
+import { FaMapMarkedAlt, FaMapSigns } from "react-icons/fa";
+import { BiWorld } from "react-icons/bi";
 
 export default function Landing() {
-  const [data, setData] = useState([]);
   const [countryData, setCountryData] = useState({});
-  const [countryBorders, setCountryBorders] = useState([]);
   const { name } = useParams();
-  const navigate = useNavigate();
 
-  // variables
-  const continents = [
-    { fr: "Océanie", en: "Oceania" },
-    { fr: "Asie", en: "Asia" },
-    { fr: "Afrique", en: "Africa" },
-    { fr: "Europe", en: "Europe" },
-    { fr: "Amérique du Nord", en: "North America" },
-    { fr: "Amérique du Sud", en: "South America" },
-    { fr: "Antarctique", en: "Antarctica" },
-  ];
-
-  const days = [
-    { fr: "lundi", en: "monday" },
-    { fr: "mardi", en: "tuesday" },
-    { fr: "mercredi", en: "wednesday" },
-    { fr: "jeudi", en: "thursday" },
-    { fr: "vendredi", en: "friday" },
-    { fr: "samedi", en: "saturday" },
-    { fr: "dimanche", en: "sunday" },
-  ];
+  // change favicon dynamically
+  useEffect(async () => {
+    const favicon = document.getElementById("favicon");
+    favicon.href = countryData?.flags?.png;
+  }, [countryData, name]);
 
   // get data on mount component
   useEffect(async () => {
-    console.log(name);
     const response = await axios.get(
       "https://restcountries.com/v3.1/name/" + name + "?fullText=true"
     );
     if (response.status === 200) {
-      const country = await countryRandom(response.data);
-      await setCountryData(country);
-      // console.log(country);
-      // console.log(country.continents);
-      // console.log(country.continents[0]);
-
-      // borders countries
-      if (country.borders) {
-        const pays = isoCountryCode.filter((element) =>
-          country.borders.includes(element.code)
-        );
-        setCountryBorders(pays);
-      }
+      console.log(response);
+      setCountryData(response.data[0]);
     } else {
       alert("error get data");
     }
   }, [name]);
 
-  // get random country
-  const countryRandom = async (arr) => {
-    return await arr[Math.floor(Math.random() * arr.length)];
-  };
-
   return (
     <>
       <Header />
-      {countryData && (
-        <div className="country">
-          <div className="container">
-            {/* top */}
-            <div className="top">
-              <div className="name">
+      <section className="country">
+        <div className="container">
+          {countryData && (
+            <>
+              <div className="country-information">
                 <div className="flag">
                   <img
                     src={countryData?.flags?.png}
-                    alt={"drapeau "}
+                    alt={countryData?.name?.common}
                     loading="lazy"
                   />
-                  <h3>
-                    <label>Nom du pays </label>
-                    <span>{countryData?.translations?.fra?.common}</span>
-                  </h3>
-                </div>
-                <div className="info">
-                  <p>
-                    <label>
-                      <FaMapMarkerAlt /> Capitale
-                    </label>
-                    <span>{countryData?.capital}</span>
-                  </p>
-                  <p>
-                    <label>
-                      <IoLanguage /> Languages
-                    </label>
-                    <span className="languages">
-                      <select name="languages">
-                        {countryData?.languages &&
-                          Object.values(countryData?.languages).map(
-                            (el, index) => <option key={index}>{el}</option>
-                          )}
-                      </select>
-                    </span>
-                  </p>
-                  <p>
-                    <label>
-                      <MdGroups /> Population
-                    </label>
-                    <span>{countryData?.population?.toLocaleString()}</span>
-                  </p>
+                  <div>
+                    <h1>{countryData?.name?.official}</h1>
+                    <h3>{countryData?.name?.common}</h3>
+                    {/* <br /> */}
+                  </div>
                 </div>
               </div>
-              <div className="geography">
-                <p>
-                  <label>
-                    <FaMapMarkedAlt />
-                    Continent
-                  </label>
-                  {countryData?.continents &&
-                    continents.map(
-                      (continent, index) =>
-                        continent.en === countryData.continents[0] && (
-                          <span key={index}>{continent.fr}</span>
-                        )
-                    )}
-                </p>
-                <p>
-                  <label>
-                    <MdAreaChart />
-                    Surface
-                  </label>
-                  <span>
-                    {countryData?.area?.toLocaleString()}{" "}
-                    {countryData?.area && " KM²"}
-                  </span>
-                </p>
-                <p>
-                  <label>
-                    <BiMapPin />
-                    Region
-                  </label>
-                  <span>{countryData?.subregion}</span>
-                </p>
-                <p>
-                  <label>
-                    <FaMapSigns />
-                    Latitude / Langitude
-                  </label>
-                  <span>{countryData?.latlng}</span>
-                </p>
-                <p className="borders">
-                  <label>
-                    <BiSitemap />
-                    Frontiers avec
-                  </label>
-                  <span className="borders">
-                    {/* <select> */}
-                    {countryBorders &&
-                      countryBorders.map((el, index) => (
-                        <span
-                          key={index}
-                          onClick={() => navigate("/" + el.name.toLowerCase())}
-                        >
-                          {el.name}
-                        </span>
-                      ))}
-                    {/* </select> */}
-                  </span>
-                </p>
-              </div>
-            </div>
+              <div className="country-information">
+                <table>
+                  <thead>
+                    <tr>
+                      <td colSpan="2">
+                        <BiWorld /> Names
+                      </td>
+                    </tr>
+                  </thead>
 
-            {/* meduim */}
-            <div className="meduim">
-              <div className="left">
-                <p>
-                  <label>
-                    <MdOutlineAttachMoney />
-                    Monie
-                  </label>
-                  <span>
-                    {countryData?.currencies &&
-                      "( " +
-                        Object.values(countryData?.currencies)[0].symbol +
-                        " ) " +
-                        Object.values(countryData?.currencies)[0].name}
-                  </span>
-                </p>
-                <p>
-                  <label>
-                    <AiOutlineCar />
-                    Coté conduite
-                  </label>
-                  <span>
-                    {countryData?.car?.side === "right"
-                      ? "droite"
-                      : countryData?.car?.side === "left"
-                      ? "gauche"
-                      : null}
-                  </span>
-                </p>
-                <p>
-                  <label>
-                    <BsCalendar2Week />
-                    Début de semaine
-                  </label>
-                  <span>
-                    {days.map(
-                      (day, index) =>
-                        day.en === countryData.startOfWeek && (
-                          <span key={index}>{day.fr}</span>
-                        )
-                    )}
-                  </span>
-                </p>
-                <p>
-                  <label>
-                    <FaHands />
-                    Independance
-                  </label>
-                  <span>
-                    {countryData?.independent &&
-                    countryData?.independent === true
-                      ? "Oui"
-                      : countryData?.independent === false
-                      ? "Non"
-                      : null}
-                  </span>
-                </p>
+                  <tbody>
+                    <tr>
+                      <td>Common</td>
+                      <td>{countryData?.name?.common}</td>
+                    </tr>
+                    <tr>
+                      <td>Official</td>
+                      <td>{countryData?.name?.official}</td>
+                    </tr>
+                    <tr>
+                      <td>Common (Native)</td>
+                      <td>
+                        {countryData?.name &&
+                          Object.values(countryData?.name?.nativeName)[0]
+                            ?.common}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Official (Native)</td>
+                      <td>
+                        {countryData?.name &&
+                          Object.values(countryData?.name?.nativeName)[0]
+                            ?.official}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Translations</td>
+                      <td>
+                        <details>
+                          <summary>translations</summary>
+                          <ul>
+                            {countryData?.translations &&
+                              Object.entries(countryData?.translations).map(
+                                (el, index) =>
+                                  [
+                                    "ara",
+                                    "fra",
+                                    "spa",
+                                    "ita",
+                                    "jpn",
+                                    "per",
+                                    "por",
+                                    "kor",
+                                    "rus",
+                                  ].includes(el[0]) && (
+                                    <>
+                                      <li key={index}>
+                                        <span>{el[0]} </span>
+                                        <span>{el[1].official}</span>
+                                      </li>
+                                    </>
+                                  )
+                              )}
+                          </ul>
+                        </details>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <td colSpan="2">
+                        <IoLanguage /> Languages
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Native language</td>
+                      <td>
+                        {countryData?.languages &&
+                          Object.values(countryData?.languages)[0]}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan="1">Languages</td>
+                      <td>
+                        {countryData?.languages &&
+                          Object.values(countryData?.languages)
+                            .slice(1)
+                            .join(", ")}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <td colSpan="2">
+                        <FaMapMarkedAlt /> Geography
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Region</td>
+                      <td>{countryData?.region}</td>
+                    </tr>
+                    <tr>
+                      <td>subregion</td>
+                      <td>{countryData?.subregion}</td>
+                    </tr>
+                    <tr>
+                      <td>capital</td>
+                      <td>{countryData?.capital}</td>
+                    </tr>
+                    <tr>
+                      <td>lat/lng</td>
+                      <td>
+                        {countryData?.latlng && countryData?.latlng.join(", ")}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>area</td>
+                      <td>
+                        {countryData?.area &&
+                          countryData?.area?.toLocaleString() + " Km²"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>land borders</td>
+                      <td>
+                        {countryData?.borders?.map((border) => (
+                          <>
+                            <Link to={"/" + border}>{border} </Link>
+                            {", "}
+                          </>
+                        ))}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <td colSpan="2">
+                        <FaMapSigns /> Codes
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>alpha 2</td>
+                      <td>{countryData?.cca2}</td>
+                    </tr>
+                    <tr>
+                      <td>alpha 3</td>
+                      <td>{countryData?.cca3}</td>
+                    </tr>
+                    <tr>
+                      <td>numeric</td>
+                      <td>{countryData?.ccn3}</td>
+                    </tr>
+                    <tr>
+                      <td>International calling code</td>
+                      <td>
+                        {countryData.idd &&
+                          countryData?.idd?.root +
+                            countryData?.idd?.suffixes[0]}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>currency code</td>
+                      <td>
+                        {countryData?.currencies &&
+                          Object.keys(countryData?.currencies)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>top level domains</td>
+                      <td>{countryData?.tld && countryData?.tld.join(", ")}</td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <td colSpan="2">auther</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>population</td>
+                      <td>{countryData?.population?.toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td>car side</td>
+                      <td>{countryData?.car && countryData?.car?.side}</td>
+                    </tr>
+                    <tr>
+                      <td>indepentent</td>
+                      <td>
+                        {countryData?.independent &&
+                        countryData?.independent === true
+                          ? "yes"
+                          : countryData?.independent === false
+                          ? "no"
+                          : null}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>week start</td>
+                      <td>
+                        {countryData?.startOfWeek && countryData?.startOfWeek}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div className="right">
-                {/* <iframe
-                  src={countryData?.maps?.googleMaps}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe> */}
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      )}
+      </section>
     </>
   );
 }

@@ -28,13 +28,14 @@ export default function Home() {
               />
               <button type="button">GO</button>
             </div> */}
-            <Link to="/countries">Afficher tous les pays</Link>
+            <Link to="/countries">display all countries</Link>
           </div>
 
           <SearchForm />
         </div>
       </section>
-      <section className="population">
+
+      {/* <section className="population">
         <div className="container">
           <div className="image">
             <img src="./people.svg" alt="" loading="lazy" />
@@ -66,9 +67,9 @@ export default function Home() {
             <p>Découvre les 7 continents sur terre</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <footer>
+      {/* <footer>
         <div className="container">
           <div className="social-media">
             <a href="#" target="_blank" className="github">
@@ -88,7 +89,7 @@ export default function Home() {
             </a>
           </p>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }

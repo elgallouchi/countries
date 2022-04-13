@@ -1,7 +1,7 @@
 @mixin table {
   color: #777;
   padding: 0.3rem 0.5rem;
-  text-align: center;
+  // text-align: center;
 }
 
 .all-countries {
@@ -12,11 +12,14 @@
       width: 100%;
       box-shadow: 0 0 30px 0px #0002;
       thead {
+        position: sticky;
+        top: 0;
         tr {
           th {
             @include table;
             color: #330033bb;
             background-color: #ff9800;
+            text-align: left;
             &:first-child {
               border-radius: 0.3rem 0 0 0;
             }
@@ -35,6 +38,7 @@
           td {
             @include table;
             width: max-content;
+            white-space: nowrap;
             img {
               max-width: 4rem;
               max-height: 4rem;

@@ -10,8 +10,8 @@ export default function Header() {
           <h2>Wolrd Countries</h2>
         </Link>
         <div className="menu">
-          <Link to="/">accueil</Link>
-          <Link to="/countries">countries</Link>
+          <Link to="/">Home</Link>
+          <Link to="/countries">All Countries</Link>
         </div>
       </div>
     </header>

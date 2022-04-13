@@ -2,18 +2,18 @@ import React from "react";
 
 export default function SearchForm() {
   return (
-    <div className="right">
+    <div className="search-form">
       <form>
         <input type="text" placeholder="Search..." required />
         <select name="" id="">
-          <option defaultValue>Recharcher par ...</option>
-          <option value="">nom</option>
-          <option value="">langue</option>
-          <option value="">monie</option>
-          <option value="">capitale</option>
-          <option value="">continent</option>
+          <option defaultValue>Search by ...</option>
+          <option value="">Name</option>
+          <option value="">Language</option>
+          <option value="">Currency</option>
+          <option value="">Capital</option>
+          <option value="">Continent</option>
         </select>
-        <button type="submit">go</button>
+        <button type="submit">search</button>
       </form>
     </div>
   );

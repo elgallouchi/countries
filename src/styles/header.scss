@@ -1,6 +1,9 @@
 header {
   background-color: #330033;
   box-shadow: 0 0 10px 10px #ddd5;
+  height: 9vh;
+  display: flex;
+  align-content: center;
   .container {
     display: flex;
     justify-content: space-between;
