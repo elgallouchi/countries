@@ -5,6 +5,7 @@ import axios from "axios";
 import { IoLanguage } from "react-icons/io5";
 import { FaMapMarkedAlt, FaMapSigns } from "react-icons/fa";
 import { BiWorld } from "react-icons/bi";
+import Skeleton from "../components/Skeleton";
 
 export default function Landing() {
   const [countryData, setCountryData] = useState({});
@@ -14,6 +15,7 @@ export default function Landing() {
   useEffect(async () => {
     const favicon = document.getElementById("favicon");
     favicon.href = countryData?.flags?.png;
+    console.log(Object.keys(countryData).length);
   }, [countryData, name]);
 
   // get data on mount component
@@ -34,8 +36,9 @@ export default function Landing() {
       <Header />
       <section className="country">
         <div className="container">
-          {countryData && (
+          {Object.keys(countryData).length !== 0 ? (
             <>
+              {/* data start */}
               <div className="country-information">
                 <div className="flag">
                   <img
@@ -262,6 +265,71 @@ export default function Landing() {
                   </tbody>
                 </table>
               </div>
+              {/* data end */}
+            </>
+          ) : (
+            <>
+              {/* skeleton start */}
+              <div className="country-information">
+                <div className="flag">
+                  <Skeleton width="40%" height="5rem" />
+                </div>
+              </div>
+              <div className="country-information">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td stylle={{ marginLeft: "1rem" }}>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                      <td>
+                        <Skeleton width="40%" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              {/* skeleton end */}
             </>
           )}
         </div>
