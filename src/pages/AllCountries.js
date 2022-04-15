@@ -1,23 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { IoArrowRedoCircleOutline } from "react-icons/io5";
 import TableSkeleton from "../components/TableSkeleton";
+import useCountries from "../hooks/useCountries";
 
 export default function AllCountries() {
-  const [countries, setCountries] = useState([]);
-
-  useEffect(async () => {
-    try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      if (response.status === 200) {
-        setCountries(response.data);
-      }
-    } catch (error) {
-      console.log("error ", error);
-    }
-  }, [countries]);
+  // const [error, setError] = useState("");
+  const { countries, error } = useCountries();
 
   //
   const listCountries = countries.map((country, index) => {
@@ -46,41 +35,45 @@ export default function AllCountries() {
       <Header />
       <section className="all-countries">
         <div className="container">
-          <table>
-            <thead>
-              <tr>
-                <th>Flag</th>
-                <th>Name</th>
-                <th>Language</th>
-                <th>Capital</th>
-                <th colSpan="2">Continent</th>
-              </tr>
-            </thead>
-            {countries.length === 0 ? (
-              <tbody>
-                <TableSkeleton />
-                <TableSkeleton />
-                <TableSkeleton />
-                <TableSkeleton />
-                <TableSkeleton />
-                <TableSkeleton />
-                <TableSkeleton />
-              </tbody>
-            ) : (
-              <tbody>{listCountries}</tbody>
-            )}
-            {/* <tfoot>
-              <tr>
-                <td colSpan="6">
-                  {countries.length === 0 ? (
-                    countries.length + " Pays"
-                  ) : (
-                    
-                  )}
-                </td>
-              </tr>
-            </tfoot> */}
-          </table>
+          {error ? (
+            <div
+              className="error"
+              style={{
+                border: "1px solid #f5c6cb",
+                borderRadius: ".25rem",
+                padding: ".75rem 1.25rem",
+                color: "#721c24",
+                background: "#f8d7da",
+              }}
+            >
+              {error}
+            </div>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Flag</th>
+                  <th>Name</th>
+                  <th>Language</th>
+                  <th>Capital</th>
+                  <th colSpan="2">Continent</th>
+                </tr>
+              </thead>
+              {countries.length === 0 ? (
+                <tbody>
+                  <TableSkeleton />
+                  <TableSkeleton />
+                  <TableSkeleton />
+                  <TableSkeleton />
+                  <TableSkeleton />
+                  <TableSkeleton />
+                  <TableSkeleton />
+                </tbody>
+              ) : (
+                <tbody>{listCountries}</tbody>
+              )}
+            </table>
+          )}
         </div>
       </section>
     </>

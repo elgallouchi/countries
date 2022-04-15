@@ -11,11 +11,11 @@ export default function Landing() {
   const [countryData, setCountryData] = useState({});
   const { countryName } = useParams();
 
-  // change favicon dynamically
+  // change dynamically favicon and title of page
   useEffect(async () => {
     const favicon = document.getElementById("favicon");
     favicon.href = countryData?.flags?.png;
-    console.log(Object.keys(countryData).length);
+    document.title = countryData?.name?.common;
   }, [countryData, countryName]);
 
   // get data on mount component
