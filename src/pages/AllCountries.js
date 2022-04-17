@@ -5,7 +5,6 @@ import TableSkeleton from "../components/TableSkeleton";
 import useCountries from "../hooks/useCountries";
 
 export default function AllCountries() {
-  // const [error, setError] = useState("");
   const { countries, error } = useCountries();
 
   //
