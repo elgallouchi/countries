@@ -33,9 +33,10 @@ header {
       a {
         border: 1px solid #ff9800;
         color: #ff9800;
-        border-radius: 2rem;
+        border-radius: .3rem;
         padding: 0 1rem;
         transition: all 0.3s ease-in-out;
+        cursor: pointer;
         &:hover {
           border: 1px solid #ff9800;
           color: #ff980077;

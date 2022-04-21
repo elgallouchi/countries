@@ -7,7 +7,8 @@ import useCountries from "../hooks/useCountries";
 export default function AllCountries() {
   const { countries, error } = useCountries();
 
-  //
+  useEffect(async () => {}, []);
+
   const listCountries = countries.map((country, index) => {
     return (
       <tr key={index}>

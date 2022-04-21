@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
-import axios from "axios";
 import { IoLanguage } from "react-icons/io5";
 import { FaMapMarkedAlt, FaMapSigns } from "react-icons/fa";
 import { BiWorld } from "react-icons/bi";
 import Skeleton from "../components/Skeleton";
+import useCountries from "../hooks/useCountries";
 
 export default function Landing() {
+  const { getByName } = useCountries();
   const [countryData, setCountryData] = useState({});
   const { countryName } = useParams();
 
@@ -20,16 +21,8 @@ export default function Landing() {
 
   // get data on mount component
   useEffect(async () => {
-    console.log(countryName);
-    const response = await axios.get(
-      "https://restcountries.com/v3.1/name/" + countryName + "?fullText=true"
-    );
-    if (response.status === 200) {
-      console.log(response);
-      setCountryData(response.data[0]);
-    } else {
-      alert("error get data");
-    }
+    const country = await getByName(countryName);
+    setCountryData(country[0]);
   }, [countryName]);
 
   return (
@@ -50,7 +43,6 @@ export default function Landing() {
                   <div>
                     <h1>{countryData?.name?.official}</h1>
                     <h3>{countryData?.name?.common}</h3>
-                    {/* <br /> */}
                   </div>
                 </div>
               </div>
@@ -185,7 +177,7 @@ export default function Landing() {
                       <td>
                         {countryData?.borders?.map((border, index) => (
                           <>
-                            <Link key={index} to={"/" + border}>
+                            <Link key={index} to={"/countries/" + border}>
                               {border}{" "}
                             </Link>
                             {", "}

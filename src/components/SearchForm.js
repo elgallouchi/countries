@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchForm() {
-  const [search, setSearch] = useState("");
-  const [option, setOption] = useState("");
+  const [optionValue, setOptionValue] = useState("");
+  const [optionKey, setOptionKey] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(search, option);
-    navigate("/7845");
+    console.log(optionValue, optionKey);
+    navigate(`/countries?q=${optionKey}&x=${optionValue}`);
   };
   return (
     <div className="search-form">
@@ -19,9 +19,9 @@ export default function SearchForm() {
           type="text"
           placeholder="Search..."
           required
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setOptionValue(e.target.value)}
         />
-        <select onChange={(e) => setOption(e.target.value)}>
+        <select onChange={(e) => setOptionKey(e.target.value)}>
           <option>Search by ...</option>
           <option value="name">Name</option>
           <option value="language">Language</option>

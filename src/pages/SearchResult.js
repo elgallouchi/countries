@@ -1,5 +1,13 @@
 import React from "react";
-
-export default function SearchResult() {
-  return <div>SearchResult</div>;
+import Header from "../components/Header";
+import SearchForm from "../components/SearchForm";
+import { useParams } from "react-router-dom";
+export default function SearchResult({ location }) {
+  console.log(location);
+  return (
+    <div>
+      <Header />
+      <SearchForm />
+    </div>
+  );
 }

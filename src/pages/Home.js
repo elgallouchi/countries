@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../components/Header";
 import SearchForm from "../components/SearchForm";
 import { Link } from "react-router-dom";
-import SearchResult from "./SearchResult";
 
 export default function Home() {
   return (
@@ -22,10 +21,9 @@ export default function Home() {
             <Link to="/countries">display all countries</Link>
           </div>
 
-          <SearchForm />
+          {/* <SearchForm /> */}
         </div>
       </section>
-      <SearchResult />
     </>
   );
 }
