@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useCountries() {
-  const [countries, setCountries] = useState([]);
+  const [AllCountries, setAllCountries] = useState([]);
   const [error, setError] = useState("");
 
   // get all countries
-  useEffect(async () => {
+  const getAll = async () => {
+    console.log("Request");
     try {
       const response = await axios.get(`https://restcountries.com/v3.1/all`);
       if (response.status === 200) {
-        await setCountries(response.data);
+        return response.data;
       }
     } catch (error) {
-      setError("No data received");
+      return "No data received";
     }
-  }, [countries]);
+  };
 
   // get countries by name
   const getByName = async (countryName) => {
@@ -32,10 +33,10 @@ export default function useCountries() {
   };
 
   // gey by form option
-  const getByOption = async (optionKey, optionValue) => {
+  const getByOption = async (key, value) => {
     try {
       const response = await axios.get(
-        `https://restcountries.com/v3.1/${optionKey}/${optionValue}`
+        `https://restcountries.com/v3.1/${key}/${value}`
       );
       if (response.status === 200) {
         return response.data;
@@ -47,7 +48,8 @@ export default function useCountries() {
 
   return {
     error,
-    countries,
+    getAll,
+    AllCountries,
     getByName,
     getByOption,
   };

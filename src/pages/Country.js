@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { IoLanguage } from "react-icons/io5";
 import { FaMapMarkedAlt, FaMapSigns } from "react-icons/fa";
 import { BiWorld } from "react-icons/bi";
 import Skeleton from "../components/Skeleton";
 import useCountries from "../hooks/useCountries";
+import { BlackList } from "../utils/BlackList";
 
-export default function Landing() {
+export default function Country() {
   const { getByName } = useCountries();
   const [countryData, setCountryData] = useState({});
   const { countryName } = useParams();
+  const navigate = useNavigate();
 
   // change dynamically favicon and title of page
   useEffect(async () => {
@@ -22,7 +24,13 @@ export default function Landing() {
   // get data on mount component
   useEffect(async () => {
     const country = await getByName(countryName);
-    setCountryData(country[0]);
+    const response = await BlackList(country);
+    console.log(country);
+    if (response.length > 0) {
+      setCountryData(response[0]);
+    } else {
+      navigate("/");
+    }
   }, [countryName]);
 
   return (
@@ -68,7 +76,7 @@ export default function Landing() {
                     <tr>
                       <td>Common (Native)</td>
                       <td>
-                        {countryData?.name &&
+                        {countryData?.name?.nativeName &&
                           Object.values(countryData?.name?.nativeName)[0]
                             ?.common}
                       </td>
@@ -76,7 +84,7 @@ export default function Landing() {
                     <tr>
                       <td>Official (Native)</td>
                       <td>
-                        {countryData?.name &&
+                        {countryData?.name?.nativeName &&
                           Object.values(countryData?.name?.nativeName)[0]
                             ?.official}
                       </td>
@@ -101,12 +109,10 @@ export default function Landing() {
                                     "kor",
                                     "rus",
                                   ].includes(el[0]) && (
-                                    <>
-                                      <li key={index}>
-                                        <span>{el[0]} </span>
-                                        <span>{el[1].official}</span>
-                                      </li>
-                                    </>
+                                    <li key={index}>
+                                      <span>{el[0]} </span>
+                                      <span>{el[1].official}</span>
+                                    </li>
                                   )
                               )}
                           </ul>
@@ -209,9 +215,9 @@ export default function Landing() {
                     <tr>
                       <td>International calling code</td>
                       <td>
-                        {countryData.idd &&
+                        {/* {countryData?.idd &&
                           countryData?.idd?.root +
-                            countryData?.idd?.suffixes[0]}
+                            countryData?.idd?.suffixes[0]} */}
                       </td>
                     </tr>
                     <tr>

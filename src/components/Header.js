@@ -11,14 +11,14 @@ export default function Header() {
     const { value: formValues } = await Swal.fire({
       // title: "Search from 250 countries",
       html:
-        `<input id="inputValue" class="swal2-input" placeholder="Search">` +
+        `<input id="inputValue" class="swal2-input" placeholder="Search" value="english">` +
         `<select id="selectValue" class="swal2-input">
-            <option value="" disabled selected>Search a option</option>
+            <option value="lang" disabled selected>Search a option</option>
             <option value="name">Name</option>
-            <option value="language">Language</option>
+            <option value="lang">Language</option>
             <option value="currency">Currency</option>
             <option value="capital">Capital</option>
-            <option value="continent">Continent</option>
+            <option value="region">Region</option>
         </select>`,
       focusConfirm: false,
       showCancelButton: true,
@@ -40,7 +40,7 @@ export default function Header() {
 
     if (formValues?.inputValue && formValues?.selectValue) {
       navigate(
-        `/countries?q=${formValues.inputValue}&x=${formValues.selectValue}`
+        `/countries?q=${formValues.selectValue}&v=${formValues.inputValue}`
       );
     }
   };
