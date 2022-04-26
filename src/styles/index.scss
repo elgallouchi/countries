@@ -1,8 +1,14 @@
 @import "./variables.scss";
 @import "./reset.scss";
 @import "./header.scss";
-@import "./home.scss";
 @import "./country.scss";
 @import "./searchform.scss";
-@import "./allcountries.scss";
+@import "./home.scss";
+@import "./footer.scss";
 @import "./loader.scss";
+@import "./darkMode.scss";
+
+@import "./mediaQueries/header.scss";
+@import "./mediaQueries/home.scss";
+@import "./mediaQueries/country.scss";
+@import "./mediaQueries/footer.scss";

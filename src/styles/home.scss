@@ -1,193 +1,114 @@
-.hero {
-  min-height: 91vh;
-  background-image: url("../assets/img/endless-constellation-1.svg");
-  background-color: #141c4c;
-  display: flex;
-  align-items: center;
+.home {
   .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    column-gap: 2rem;
-    .intro {
-      display: flex;
-      flex-direction: column;
-      row-gap: 2rem;
-      width: 60%;
-      h1 {
-        font-size: 1.5rem;
-        color: $white;
-        font-weight: 300;
-        display: flex;
-        flex-direction: column;
-        span {
-          font-size: 3rem;
-          strong {
-            color: #ffc107;
+    h2 {
+      padding: 1rem 0;
+    }
+    table {
+      padding: 0.3rem 0.5rem;
+      border-collapse: collapse;
+      width: 100%;
+      thead {
+        tr {
+          th {
+            padding: 0.3rem 0.5rem;
+            text-align: left;
+            &:first-child {
+              border-radius: 0.3rem 0 0 0;
+            }
+            &:last-child {
+              border-radius: 0 0.3rem 0 0;
+            }
           }
         }
       }
-      a {
-        text-decoration: none;
-        right: 0.3rem;
-        background-color: #fff;
-        width: max-content;
-        height: 4rem;
-        font-size: 1.7rem;
-        color: #ff9800;
-        font-weight: 600;
-        border: 0;
-        outline: 0;
-        border-radius: 3.5rem;
-        cursor: pointer;
-        padding: 0 2rem;
-        border: 3px solid #ff9800;
-        // box-shadow: 0 0 10px 0px #ff9800;
-        background: none;
-        transition: all .2s ease-in-out;
-        &:hover {
-          border: 3px solid #ffc978;
-          box-shadow: 0 0 15px 0px #ffc978;
+      tbody {
+        tr {
+          td {
+            padding: 0.3rem 0.5rem;
+            width: max-content;
+            white-space: nowrap;
+            img {
+              max-width: 4rem;
+              max-height: 4rem;
+            }
+            a {
+              text-decoration: none;
+              svg {
+                width: 1.5rem;
+                height: 1.5rem;
+              }
+            }
+          }
         }
-      }
-      span {
-      }
-    }
-  }
-}
-.population {
-  // background-color: #fe8;
-  .container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-    .image {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 27rem;
-        max-width: 80%;
-        // border: 1px solid #55005533;
-        background-color: #fff5;
-        padding: 1rem;
-        border-radius: 1rem;
-      }
-    }
-    .info {
-      width: 50%;
-      font-size: 2rem;
-      color: #550055;
-      h3 {
-        font-weight: 600;
-      }
-      p {
       }
     }
   }
 }
 
-.languages {
-  background-color: #fff;
+// light mode
+.home-light {
+  background-color: $lightModeColorLight;
   .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .image {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 27rem;
-        max-width: 80%;
-        // border: 1px solid #55005533;
-        background-color: #eee;
-        padding: 1rem;
-        border-radius: 1rem;
-      }
+    h2 {
+      color: $darkModeColorMedium;
     }
-    .info {
-      width: 50%;
-      font-size: 2rem;
-      color: #550055;
-      h3 {
-        font-weight: 600;
+    table {
+      box-shadow: 0 0 10px 0px $lightModeColorMedium;
+      color: $darkModeColorDefault;
+      thead {
+        background-color: $lightModeColorMedium;
+        tr {
+          th {
+            color: $darkModeColorDefault;
+          }
+        }
       }
-      p {
-      }
-    }
-  }
-}
-.continents {
-  // background-color: #fff;
-  .container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-    .image {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 27rem;
-        max-width: 80%;
-        // border: 1px solid #55005533;
-        background-color: #eee;
-        padding: 1rem;
-        border-radius: 1rem;
-      }
-    }
-    .info {
-      width: 50%;
-      font-size: 2rem;
-      color: #550055;
-      h3 {
-        font-weight: 600;
-      }
-      p {
+      tbody {
+        tr {
+          background-color: #fff;
+          &:nth-child(even) {
+            background-color: $lightModeColorLight;
+          }
+          td {
+            a {
+              color: $darkModeColorDefault;
+            }
+          }
+        }
       }
     }
   }
 }
 
-footer {
-  background-color: #550055;
-  padding: 5rem 0 1rem;
-  color: #fff;
+// dark mode
+.home-dark {
+  background-color: $darkModeColorDefault; //
   .container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    .social-media {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      column-gap: 2rem;
-      a {
-        svg {
-          color: #fff;
-          font-size: 3rem;
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            // border: 1px solid #ff9800;
-            background-color: #ff9800;
-            color: #550055;
-            border-radius: 0.3rem;
-            transform: rotate(15deg);
+    color: $lightModeColorLight;
+    table {
+      color: $lightModeColorDark;
+      box-shadow: 0 0 10px 0px $darkModeColorDark; //
+      thead {
+        background-color: $darkModeColorDark; //
+        tr {
+          th {
+            color: $darkModeColorLight;
           }
         }
       }
-    }
-    p {
-      text-align: center;
-      font-weight: 300;
-      a {
-        color: #ff9800;
+      tbody {
+        tr {
+          // background-color: $darkModeColorMedium;
+          &:nth-child(even) {
+            background-color: $darkModeColorMedium;
+            // color: $lightModeColorDark;
+          }
+          td {
+            a {
+              color: $lightModeColorDark;
+            }
+          }
+        }
       }
     }
   }

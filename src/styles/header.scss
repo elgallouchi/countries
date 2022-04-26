@@ -1,5 +1,4 @@
 header {
-  background-color: #330033;
   box-shadow: 0 0 10px 10px #ddd5;
   height: 9vh;
   display: flex;
@@ -12,15 +11,11 @@ header {
       display: flex;
       align-items: center;
       text-decoration: none;
+      gap: 1rem;
       svg {
-        width: 3rem;
-        height: 3rem;
-        margin-right: 1rem;
-        color: #ff9800;
+        font-size: 2.5rem;
       }
       h2 {
-        font-family: $CairoRegular;
-        color: #ff9800;
         font-size: 2rem;
       }
     }
@@ -28,20 +23,92 @@ header {
       display: flex;
       flex-direction: row;
       align-items: center;
-      column-gap: 1rem;
-      text-transform: uppercase;
+      gap: 0.7rem;
+      text-transform: capitalize;
       a {
-        border: 1px solid #ff9800;
-        color: #ff9800;
-        border-radius: .3rem;
-        padding: 0 1rem;
-        transition: all 0.3s ease-in-out;
         cursor: pointer;
-        &:hover {
-          border: 1px solid #ff9800;
-          color: #ff980077;
-          background-color: #ff980011;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        border-radius: 0.3rem;
+        padding: 0 0.5rem;
+        svg {
+          cursor: pointer;
         }
+      }
+      button.btn-toggle {
+        border: 0;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}
+
+// light mode
+.header-light {
+  background-color: $lightModeColorDark;
+  .container {
+    a {
+      svg {
+        color: $svgColorLight;
+      }
+      h2 {
+        color: $darkModeColorDefault;
+      }
+    }
+    .menu {
+      a {
+        color: $darkModeColorDefault;
+      }
+      span {
+        background-color: $lightModeColorLight;
+        color: $darkModeColorMedium;
+        svg {
+          color: #333;
+        }
+      }
+      button.btn-toggle {
+        background-color: $darkModeColorDefault;
+        color: $lightModeColorDark;
+      }
+    }
+  }
+}
+
+// dark mode
+.header-dark {
+  background-color: $darkModeColorDark;
+  .container {
+    a {
+      svg {
+        color: $svgColorDark;
+      }
+
+      h2 {
+        color: $darkModeColorLight;
+      }
+    }
+    .menu {
+      a {
+        color: $darkModeColorLight;
+      }
+      span {
+        background-color: #eee;
+      }
+      button.btn-toggle {
+        background-color: $lightModeColorDark;
+        color: $darkModeColorDefault;
       }
     }
   }

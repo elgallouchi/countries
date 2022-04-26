@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useCountries() {
-  const [AllCountries, setAllCountries] = useState([]);
-  const [error, setError] = useState("");
-
   // get all countries
   const getAll = async () => {
     console.log("Request");
@@ -46,11 +43,23 @@ export default function useCountries() {
     }
   };
 
+  const getByCode = async (countryCode) => {
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/alpha/${countryCode}`
+      );
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      return "No data received";
+    }
+  };
+
   return {
-    error,
     getAll,
-    AllCountries,
     getByName,
     getByOption,
+    getByCode,
   };
 }

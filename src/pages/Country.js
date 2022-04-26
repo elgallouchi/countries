@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import { IoLanguage } from "react-icons/io5";
 import { FaMapMarkedAlt, FaMapSigns } from "react-icons/fa";
@@ -7,36 +7,51 @@ import { BiWorld } from "react-icons/bi";
 import Skeleton from "../components/Skeleton";
 import useCountries from "../hooks/useCountries";
 import { BlackList } from "../utils/BlackList";
+import Footer from "../components/Footer";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Country() {
-  const { getByName } = useCountries();
+  const { getByName, getByCode } = useCountries();
   const [countryData, setCountryData] = useState({});
-  const { countryName } = useParams();
+  const { countryName, countryCode } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
-
-  // change dynamically favicon and title of page
-  useEffect(async () => {
-    const favicon = document.getElementById("favicon");
-    favicon.href = countryData?.flags?.png;
-    document.title = countryData?.name?.common;
-  }, [countryData, countryName]);
+  const { theme } = useContext(ThemeContext);
 
   // get data on mount component
   useEffect(async () => {
-    const country = await getByName(countryName);
-    const response = await BlackList(country);
-    console.log(country);
-    if (response.length > 0) {
-      setCountryData(response[0]);
-    } else {
-      navigate("/");
+    // get by country name
+    if (countryName) {
+      // search by params passed from route
+      const country = await getByName(countryName);
+      const response = await BlackList(country);
+      if (response.length > 0) {
+        setCountryData(response[0]);
+      } else {
+        navigate("/");
+      }
     }
-  }, [countryName]);
+
+    // get by country code alpha
+    if (countryCode) {
+      // search by params from url
+      const tr = await getByCode(countryCode);
+      const response = await BlackList(tr);
+      if (response.length > 0) {
+        setCountryData(response[0]);
+      } else {
+        navigate("/");
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [countryName, countryCode, location]);
 
   return (
     <>
       <Header />
-      <section className="country">
+      <section
+        className={`country ${theme ? "country-dark" : "country-light"}`}
+      >
         <div className="container">
           {Object.keys(countryData).length !== 0 ? (
             <>
@@ -183,7 +198,10 @@ export default function Country() {
                       <td>
                         {countryData?.borders?.map((border, index) => (
                           <>
-                            <Link key={index} to={"/countries/" + border}>
+                            <Link
+                              key={index}
+                              to={"/country/code/" + border.toLowerCase()}
+                            >
                               {border}{" "}
                             </Link>
                             {", "}
@@ -215,9 +233,9 @@ export default function Country() {
                     <tr>
                       <td>International calling code</td>
                       <td>
-                        {/* {countryData?.idd &&
+                        {countryData?.idd &&
                           countryData?.idd?.root +
-                            countryData?.idd?.suffixes[0]} */}
+                            countryData?.idd?.suffixes[0]}
                       </td>
                     </tr>
                     <tr>
@@ -335,6 +353,7 @@ export default function Country() {
           )}
         </div>
       </section>
+      <Footer />
     </>
   );
 }

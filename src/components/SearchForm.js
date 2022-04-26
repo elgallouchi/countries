@@ -10,7 +10,7 @@ export default function SearchForm() {
     e.preventDefault();
 
     console.log(optionValue, optionKey);
-    navigate(`/countries?q=${optionKey}&x=${optionValue}`);
+    navigate(`/countries?q=${optionKey}&v=${optionValue}`);
   };
   return (
     <div className="search-form">

@@ -23,3 +23,9 @@ section {
 #selectValue {
   width: 70%;
 }
+
+@media only screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+}

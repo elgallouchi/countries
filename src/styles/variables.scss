@@ -16,7 +16,31 @@ $CairoLight: "cairo light";
 $CairoExtraLight: "cairo extraLight";
 $CairoRegular: "cairo regular";
 
-// colors
+// colors light
+$backgroundColorDark: #22272e;
+$fontColorDark: #adbac7;
+
+// dark in progress
+
+$svgColorDark: #ffeb3b;
+$darkModeColorDark: #2f3542;
+$darkModeColorDefault: #57606f;
+$darkModeColorMedium: #747d8c;
+$darkModeColorLight: #a4b0be;
+
+// light in progress
+$svgColorLight: #673ab7;
+$lightModeColorDark: #ced6e0;
+$lightModeColorMedium: #dfe4ea;
+$lightModeColorLight: #f1f2f6;
+
+$backgroundColorThead: #2d333b;
+
+$a: 293039;
+$a: #adbac7;
+$background: #49505a;
+$color: #adbac7;
+
 $red: #fa314a;
 $white: #fff;
 $gray: #efefef;
@@ -29,9 +53,8 @@ $fontsize: 1.2rem;
 // padding
 $padbox: 1.5rem;
 
-
 // border radius
-$borderradius: .3rem;
+$borderradius: 0.3rem;
 
 // box shadow
 $boxshadow: 0 0 10px #aaa5;
