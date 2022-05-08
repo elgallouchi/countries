@@ -14,9 +14,9 @@ export default function Header() {
   const handleAlert = async () => {
     const { value: formValues } = await Swal.fire({
       html:
-        `<input id="inputValue" class="swal2-input" placeholder="Search" value="arabic">` +
+        `<input id="inputValue" class="swal2-input" placeholder="Search">` +
         `<select id="selectValue" class="swal2-input">
-            <option value="lang" disabled selected>Search a option</option>
+            <option value="" disabled selected>Search a option</option>
             <option value="name">Name</option>
             <option value="lang">Language</option>
             <option value="currency">Currency</option>
