@@ -1,0 +1,34 @@
+@media only screen and (max-width: 480px) {
+  header {
+    width: 100%;
+    .container {
+      a {
+        gap: 0.3rem;
+        svg {
+          display: none;
+          font-size: 1.3em;
+        }
+        h2 {
+          span {
+            color: #e60;
+          }
+          font-size: 1.3rem;
+        }
+      }
+      .menu {
+        a {
+          display: none;
+        }
+        span {
+          font-size: 1rem;
+          svg {
+          }
+        }
+        button {
+          svg {
+          }
+        }
+      }
+    }
+  }
+}

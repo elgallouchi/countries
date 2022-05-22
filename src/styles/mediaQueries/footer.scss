@@ -1,0 +1,17 @@
+@media only screen and (max-width: 480px) {
+  footer {
+    padding: 1rem;
+    .container {
+      //   border: 3px solid red;
+      .social-media {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        a {
+          //   display: none;
+        }
+      }
+    }
+  }
+}

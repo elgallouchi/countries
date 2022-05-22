@@ -1,0 +1,13 @@
+@media only screen and (max-width: 480px) {
+  section.home {
+    .container {
+      overflow: auto;
+      padding: 0.5rem;
+      h2 {
+      }
+      table {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@media only screen and (max-width: 480px) {
+  .country {
+    .container {
+      .country-information {
+        .flag {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          //   border: none;
+          img {
+            height: 11rem;
+            width: 100%;
+          }
+          div {
+            border: none;
+            padding: 1rem;
+            h1 {
+              font-size: 1.3rem;
+            }
+            h3 {
+              font-size: 1.1rem;
+            }
+          }
+        }
+
+        table {
+          font-size: 1rem;
+          thead {
+            tr {
+              td {
+                font-size: 1.3rem;
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                // border: 5px solid red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+// // header dark mode
+// header-dark {
+//   background-color: #330033;
+//   box-shadow: 0 0 10px 10px #ddd5;
+//   .container {
+//     a {
+//       svg {
+//         color: #ff9800;
+//       }
+//       h2 {
+//         font-family: $CairoRegular;
+//         color: #ff9800;
+//       }
+//     }
+//     .menu {
+//       a {
+//         color: #ff9800;
+//       }
+//       span {
+//         background-color: #fff;
+//         color: #777;
+//         svg {
+//           color: #333;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// // home page dark mode
+
+// .all-countries-dark {
+//   .container {
+//     table {
+//       color: #777;
+//       box-shadow: 0 0 30px 0px #0002;
+//       thead {
+//         tr {
+//           th {
+//             color: #ff9800;
+//             background-color: #330033;
+//           }
+//         }
+//       }
+//       tbody {
+//         tr {
+//           background-color: #330033;
+//           &:nth-child(even) {
+//             background-color: #330033;
+//           }
+//           td {
+//             color: #ff9800;
+//             img {
+//             }
+//             a {
+//               color: #ff9800;
+//             }
+//           }
+//         }
+//       }
+//       tfoot {
+//         tr {
+//           td {
+//             color: #ff9800;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
