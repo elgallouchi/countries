@@ -49,14 +49,14 @@ export default function Header() {
   return (
     <header className={theme ? "header-dark" : "header-light"}>
       <div className="container">
-        <Link to="/">
+        <Link to="/countries">
           <BiWorld />
           <h2>
             <span>World</span> Countries
           </h2>
         </Link>
         <div className="menu">
-          <Link to="/">Home</Link>
+          <Link to="/countries">Home</Link>
           <span onClick={handleAlert}>
             <BiSearch /> Search...
           </span>
