@@ -10,7 +10,7 @@ export default function Footer() {
           <a href="https://twitter.com/elgallouchi" target="_blank">
             <FaTwitterSquare /> Twitter
           </a>
-          <a href="https://github.com/hassanelgallouchi" target="_blank">
+          <a href="https://github.com/elgallouchi" target="_blank">
             <FaGithubSquare /> Github
           </a>
           <a href="https://linkedin.com/in/hassanelgallouchi" target="_blank">
