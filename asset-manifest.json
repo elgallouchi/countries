@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/countries/static/css/main.16a58766.css",
-    "main.js": "/countries/static/js/main.b0a19cc2.js",
+    "main.js": "/countries/static/js/main.62220c04.js",
     "static/media/Cairo-Light.ttf": "/countries/static/media/Cairo-Light.74621ea8b7eedb725387.ttf",
     "static/media/Cairo-Regular.ttf": "/countries/static/media/Cairo-Regular.64b7f6f903681ee8f2ef.ttf",
     "static/media/Cairo-ExtraLight.ttf": "/countries/static/media/Cairo-ExtraLight.36571f0f5e665235610c.ttf",
     "index.html": "/countries/index.html",
     "main.16a58766.css.map": "/countries/static/css/main.16a58766.css.map",
-    "main.b0a19cc2.js.map": "/countries/static/js/main.b0a19cc2.js.map"
+    "main.62220c04.js.map": "/countries/static/js/main.62220c04.js.map"
   },
   "entrypoints": [
     "static/css/main.16a58766.css",
-    "static/js/main.b0a19cc2.js"
+    "static/js/main.62220c04.js"
   ]
 }
