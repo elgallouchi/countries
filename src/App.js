@@ -6,9 +6,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="country/name/:countryName" element={<Country />} />
-        <Route path="country/code/:countryCode" element={<Country />} />
+        <Route path="countries" element={<Home />} />
+        <Route path="countries/country/name/:countryName" element={<Country />} />
+        <Route path="countries/country/code/:countryCode" element={<Country />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
