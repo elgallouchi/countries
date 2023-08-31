@@ -1,6 +1,6 @@
 {
-  "homepage": "http://HassanElgallouchi.github.io/countries-api",
-  "name": "countries-api",
+  "homepage": "http://HassanElgallouchi.github.io/countries",
+  "name": "countries",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
