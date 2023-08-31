@@ -9,8 +9,6 @@ import { ThemeContext } from "../context/ThemeContext";
 export default function Header() {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(theme);
-
   const handleAlert = async () => {
     const { value: formValues } = await Swal.fire({
       html:

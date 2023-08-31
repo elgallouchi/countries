@@ -28,21 +28,21 @@ export default function Country() {
       if (response.length > 0) {
         setCountryData(response[0]);
       } else {
-        navigate("/");
+        navigate("/countries");
       }
     }
 
     // get by country code alpha
-    if (countryCode) {
-      // search by params from url
-      const tr = await getByCode(countryCode);
-      const response = await BlackList(tr);
-      if (response.length > 0) {
-        setCountryData(response[0]);
-      } else {
-        navigate("/");
-      }
-    }
+    // if (countryCode) {
+    //   // search by params from url
+    //   const tr = await getByCode(countryCode);
+    //   const response = await BlackList(tr);
+    //   if (response.length > 0) {
+    //     setCountryData(response[0]);
+    //   } else {
+    //     navigate("/countries");
+    //   }
+    // }
     window.scrollTo(0, 0);
   }, [countryName, countryCode, location]);
 
@@ -197,15 +197,18 @@ export default function Country() {
                       <td>land borders</td>
                       <td>
                         {countryData?.borders?.map((border, index) => (
-                          <>
-                            <Link
+                          <span key={index}>
+                            {/* <Link
                               key={index}
-                              to={"/countries/country/code/" + border.toLowerCase()}
-                            >
-                              {border}{" "}
-                            </Link>
+                              to={
+                                "/countries/country/code/" +
+                                border.toLowerCase()
+                              }
+                            > */}
+                            {border.toLowerCase()}
+                            {/* </Link> */}
                             {", "}
-                          </>
+                          </span>
                         ))}
                       </td>
                     </tr>
