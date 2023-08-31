@@ -200,7 +200,7 @@ export default function Country() {
                           <>
                             <Link
                               key={index}
-                              to={"/country/code/" + border.toLowerCase()}
+                              to={"/countries/country/code/" + border.toLowerCase()}
                             >
                               {border}{" "}
                             </Link>
