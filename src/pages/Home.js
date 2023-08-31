@@ -56,7 +56,7 @@ export default function Home(props) {
     return (
       <tr key={index}>
         <td>
-          <Link to={"/country/name/" + country?.name?.common?.toLowerCase()}>
+          <Link to={"/countries/country/name/" + country?.name?.common?.toLowerCase()}>
             {country?.flags && (
               <img
                 src={country?.flags?.svg}
@@ -68,7 +68,7 @@ export default function Home(props) {
         </td>
         <td>
           <Link
-            to={"/country/name/" + country?.name?.common?.toLowerCase()}
+            to={"/countries/country/name/" + country?.name?.common?.toLowerCase()}
             className="country-name"
           >
             {country?.name?.common.length > 21
@@ -80,7 +80,7 @@ export default function Home(props) {
         <td>{country?.capital}</td>
         <td>{country?.continents}</td>
         <td>
-          <Link to={"/country/name/" + country?.name?.common?.toLowerCase()}>
+          <Link to={"/countries/country/name/" + country?.name?.common?.toLowerCase()}>
             <AiOutlineLink />
           </Link>
         </td>
