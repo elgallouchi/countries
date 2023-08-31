@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/countries-api/static/css/main.7b170987.css",
-    "main.js": "/countries-api/static/js/main.a40ceb88.js",
-    "static/media/Cairo-Light.ttf": "/countries-api/static/media/Cairo-Light.74621ea8b7eedb725387.ttf",
-    "static/media/Cairo-Regular.ttf": "/countries-api/static/media/Cairo-Regular.64b7f6f903681ee8f2ef.ttf",
-    "static/media/Cairo-ExtraLight.ttf": "/countries-api/static/media/Cairo-ExtraLight.36571f0f5e665235610c.ttf",
-    "index.html": "/countries-api/index.html",
-    "main.7b170987.css.map": "/countries-api/static/css/main.7b170987.css.map",
-    "main.a40ceb88.js.map": "/countries-api/static/js/main.a40ceb88.js.map"
+    "main.css": "/countries/static/css/main.16a58766.css",
+    "main.js": "/countries/static/js/main.b0a19cc2.js",
+    "static/media/Cairo-Light.ttf": "/countries/static/media/Cairo-Light.74621ea8b7eedb725387.ttf",
+    "static/media/Cairo-Regular.ttf": "/countries/static/media/Cairo-Regular.64b7f6f903681ee8f2ef.ttf",
+    "static/media/Cairo-ExtraLight.ttf": "/countries/static/media/Cairo-ExtraLight.36571f0f5e665235610c.ttf",
+    "index.html": "/countries/index.html",
+    "main.16a58766.css.map": "/countries/static/css/main.16a58766.css.map",
+    "main.b0a19cc2.js.map": "/countries/static/js/main.b0a19cc2.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b170987.css",
-    "static/js/main.a40ceb88.js"
+    "static/css/main.16a58766.css",
+    "static/js/main.b0a19cc2.js"
   ]
 }
